@@ -1,19 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
+import Home from './src/Components/Home.js';
 console.disableYellowBox = true;
 
 export default class App extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked : false,
+    };
+    this.handle = this.handle.bind(this)
+  }
+  
+  handle() {
+    this.setState({ clicked : true });
+  }
+
   render() {
-    return (
-      <Expo.GLView
+    if (this.state.clicked) {
+      return (<Expo.GLView
         ref={(ref) => this._glView = ref}
         style={{ flex: 1 }}
         onContextCreate={this._onGLContextCreate}
-      />
-    );
+      />);
+    }
+    else { 
+      return (<Home handle={this.handle}/>);
+    }
   }
 
   _onGLContextCreate = async (gl) => {

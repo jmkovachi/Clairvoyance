@@ -6,6 +6,10 @@
     "expo-three": "^2.2.2-alpha.1",
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-25.0.0.tar.gz",
-    "three": "^0.90.0"
+    "three": "^0.90.0",
+    "three-collada-loader": "0.0.1"
+  },
+  "rnpm": {
+    "assets": ["assets/fonts/Cinzel-Regular.ttf"]
   }
 }

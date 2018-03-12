@@ -6,6 +6,9 @@ import Expo from 'expo';
 import { Font } from 'expo';
 console.disableYellowBox = true;
 
+
+ 
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +25,7 @@ export default class Home extends Component {
         this.setState({
             fontLoaded : true,
         });
+        
     }
 
     render() {
@@ -41,6 +45,7 @@ export default class Home extends Component {
                         onPress={this.props.handle}
                         title={'Press me'}
                     />
+                    
                 </View>
             </ImageBackground>
             

@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, Geolocation } from 'react-native';
 import * as THREE from 'three';
 import ExpoTHREE from 'expo-three';
 import Expo from 'expo';
 import Home from './src/Components/Home.js';
 import ColladaLoader from 'three-collada-loader';
+import GeolocationExample from './src/Components/Geolocation.js'
+import { Math } from 'three';
 console.disableYellowBox = true;
 
 export default class App extends React.Component {
@@ -32,6 +34,7 @@ export default class App extends React.Component {
     else { 
       return (<Home handle={this.handle}/>);
     }
+    /*return (<GeolocationExample/>)*/
   }
 
   addArrow() {
@@ -75,21 +78,25 @@ export default class App extends React.Component {
 
     mesh.position.z = -0.7;*/
 
-    var dir = new THREE.Vector3( 0, 0, -5 );
+    var dir = new THREE.Vector3( 0, 0, -3 );
 
     //normalize the direction vector (convert to vector of length 1)
+
+    var a = new THREE.Euler( 0, 6.28 - 3.47, 0, 'XYZ' );
+
+    dir.applyEuler(a);
     dir.normalize();
 
-    var origin = new THREE.Vector3( 0, 0, -.3 );
+    var origin = new THREE.Vector3( 0, 0, -1 );
     var length = 1;
     var hex = 0xffff00;
 
     var arrowHelper = new THREE.ArrowHelper( dir, origin, length, hex );
     arrowHelper.line.material.linewidth = 15;
+
     scene.add( arrowHelper );
 
     //scene.add( mesh );
-
 
     /*const modelFiles = {
       "model.dae": require('/home/jmkovachi/Documents/personal_projects/Clairvoyance/models/model.dae'),
@@ -136,6 +143,7 @@ async function loadBasicDAE() {
 
   return collada;
 }
+
 
 
 const styles = StyleSheet.create({

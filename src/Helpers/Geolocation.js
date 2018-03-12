@@ -1,8 +1,7 @@
 import Expo from 'expo';
 
-class Geolocation {
+class Geolocation  {
     constructor() {
-    
         this.state = {
           latitude: null,
           longitude: null,
@@ -37,7 +36,7 @@ class Geolocation {
         var y = Math.sin(dLon) * Math.cos(lat2);
         var x = Math.cos(lat1)*Math.sin(lat2) - Math.sin(lat1)*Math.cos(lat2)*Math.cos(dLon);
         var brng = this._toDeg(Math.atan2(y, x));
-        this.state.bearing = 360 - ((brn + 360)) % 360;
+        this.state.bearing = (brng + 360) % 360;
         return this.state.bearing;
       }
     
@@ -56,9 +55,9 @@ class Geolocation {
         return rad * 180 / Math.PI;
     }
 
-    convertToRotation(final_Long, final_Lat) {
-        var bear = this.bearing(this.state.latitude, this.state.longitude, final_Lat, final_Long);
-        return bear - this.state.magHeading;
+    convertToRotation(current_lat, current_long, final_Lat, final_Long, magHeading) {
+        var bear = this.bearing(current_lat, current_long, final_Lat, final_Long);
+        return magHeading - bear;
       }
 }
 
